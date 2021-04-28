@@ -134,7 +134,7 @@ Output how many pairs of cows can fit inside the frame
 ### Sample Output
 
 ```text
-7
+6
 ```
 
 ### Explanation
