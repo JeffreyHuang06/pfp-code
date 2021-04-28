@@ -1,11 +1,11 @@
 import React, {useState} from 'react'
-import axios from "axios"
-import qs from 'qs'
+
+const WebSocket = require("isomorphic-ws");
 
 const langs: string[] = [
     "--",
     "js",
-    "python3"
+    "python"
 ];
 
 const Submit: React.FC = () => {
@@ -29,24 +29,29 @@ const Submit: React.FC = () => {
         }
     }
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const res = await axios.post(
-            "http://localhost:80/code",
-            qs.stringify({
+        // prepare the json sent
+
+        const ws = new WebSocket('ws://localhost:8080/wscode');
+
+        ws.onopen = function open() {
+            ws.send(JSON.stringify({
                 "lang": lang,
                 "code": solution,
                 "prob": prob
-            }),
-            {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-                }
-            }
-        );
+            }));
+        }
 
-        console.log(res);
+        ws.onclose = function close() {
+            console.log('disconnected');
+        };
+
+        ws.onmessage = function incoming(data: any) {
+            // TODO: add actual response
+            console.log(data);
+        };
     }
 
     return (

@@ -1,6 +1,6 @@
 export enum judgingStatusCode {
-    SUCCESS,
-    FAILED,
-    PISTONERR,
-    SOLERR // solution error
+    SUCCESS = "SUCCESS",
+    FAILED = "FAILED",
+    PISTONERR = "PISTONERR",
+    SOLERR = "SOLERR" // solution error
 };
