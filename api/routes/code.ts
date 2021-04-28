@@ -6,7 +6,7 @@ import fullSubmitSolution from 'src/fullSubmitSolution';
 
 const router = express.Router();
 
-router.post("/code", async (req: any, res: any) => {
+router.post("/code", async (req, res) => {
     // validate input
     if (!validateCodeInput(req.body) || !problems.has(req.body.prob)){
         res.statusCode = 400;
