@@ -5,6 +5,7 @@ import {
     Route,
 } from "react-router-dom";
 import Submit from 'pages/Submit';
+import TestWS from 'pages/TestWS';
 
 const App: React.FC = () => {
     return (
@@ -12,6 +13,10 @@ const App: React.FC = () => {
             <Switch>
                 <Route path="/submit">
                     <Submit />
+                </Route>
+
+                <Route path="/testws">
+                    <TestWS />
                 </Route>
             </Switch>
         </Router>
