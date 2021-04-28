@@ -8,6 +8,8 @@ import codeAPIRouter from "routes/code"
 import cors from "cors"
 import judgeCode from 'routes/codews';
 
+import {judgingStatusCode as jSC} from 'types/judgingEnum'
+
 const PORT = 80;
 
 // Express
@@ -35,7 +37,10 @@ wss.on('connection', function connection(ws) {
 
         for await (const res of codingJudge){
             // TODO: add randomized wait time to counter timing exploit
+
             ws.send(res);
+
+            if (res === jSC.SOLERR) ws.close();
         }
     });
 });
