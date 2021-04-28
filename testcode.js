@@ -5,8 +5,6 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-console.log("Initialized");
-
 rl.question('', (answer) => {
     console.log(answer);
 
