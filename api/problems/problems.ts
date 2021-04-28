@@ -1,6 +1,8 @@
-import { testCase } from "./problemType"
+import { testCase } from "types/problemType"
 
 let problems: Map<string, testCase[]> = new Map();
+
+// change this file to json
 
 problems.set("Test", [
     {
@@ -13,4 +15,4 @@ problems.set("Test", [
     }
 ])
 
-export default problems
+export default problems;

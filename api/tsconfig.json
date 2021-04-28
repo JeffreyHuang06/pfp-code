@@ -28,7 +28,8 @@
         "baseUrl": ".",
         "paths": {
             "routes/*": ["routes/*"],
-            "src/*": ["src/*"]
+            "src/*": ["src/*"],
+            "types/*": ["types/*"]
         }
     },
     "exclude": [
