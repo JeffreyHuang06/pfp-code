@@ -1,4 +1,6 @@
 import React, {useState} from 'react'
+import {useSetRecoilState} from "recoil"
+import statusAtom from "state/statusAtom"
 
 const WebSocket = require("isomorphic-ws");
 
@@ -12,6 +14,8 @@ const SubmitForm: React.FC = () => {
     const [lang, setLang] = useState<string>("");
     const [solution, setSolution] = useState<string>("");
     const [prob, setProb] = useState<string>("");
+
+    const setStatus = useSetRecoilState(statusAtom);
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLTextAreaElement> | React.ChangeEvent<HTMLInputElement>, type: string) => {
         switch(type){
@@ -32,6 +36,9 @@ const SubmitForm: React.FC = () => {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
+        // reset the state
+        setStatus([]);
+
         // prepare the json sent
 
         const ws = new WebSocket('ws://localhost:8080/wscode');
@@ -48,15 +55,16 @@ const SubmitForm: React.FC = () => {
             console.log('disconnected');
         };
 
-        ws.onmessage = function incoming(data: any) {
-            // TODO: add actual response
-            console.log(data);
+        ws.onmessage = function incoming(res: any) {
+            console.log(res.data); // for debugging
+            
+            setStatus(prevStatus => [...prevStatus, res.data]);
         };
     }
 
     return (
         <div className="container">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} autoComplete="off">
 
                 <div className="row">
                     <div className="col">
