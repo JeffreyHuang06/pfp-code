@@ -1,12 +1,14 @@
-const readline = require('readline');
+let _inputarr = [5,40,40,35,54,59];
+_inputarr.reverse();
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+const getInput = () => {
+    return _inputarr.pop();
+}
 
-rl.question('', (answer) => {
-    console.log(answer);
+let N = getInput();
+let maxelem = 0;
+for (let i=0;i<N;i++){
+    maxelem = Math.max(maxelem, getInput());
+}
 
-    rl.close();
-});
+console.log(maxelem);
