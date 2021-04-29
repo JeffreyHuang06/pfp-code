@@ -1,4 +1,4 @@
 export type testCase = {
-    input: string;
+    input: number[];
     output: string;
 };
