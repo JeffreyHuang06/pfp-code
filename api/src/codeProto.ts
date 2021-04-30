@@ -24,5 +24,5 @@ export const codeProto: codeProtoType = {
 
 export const langVers: Map<string, string> = new Map([
     ["js", "15.10.0"],
-    ["python", "3.5.10"]
+    ["python", "3.9.4"]
 ]);
