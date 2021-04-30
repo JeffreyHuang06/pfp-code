@@ -3,21 +3,14 @@ import problems from "../problems/problems"
 import {testCase as testCaseType} from 'types/problemType'
 import postSolution from "./postSolution";
 import {codeProtoType} from "./codeProto"
+import addInputHeader from "./addInputHeader";
 
 const sleep = (milliseconds: number) => {
     return new Promise(resolve => setTimeout(resolve, milliseconds))
 }
 
-const addNodeInputHeader = (input: number[], formattedSolution: codeProtoType): string => {
-    let solutionClone = JSON.parse(JSON.stringify(formattedSolution)) // utter fucking garbage
-
-    solutionClone.files[0].content = `let _iarr=${JSON.stringify(input)}.reverse();function getInput(){return _iarr.pop();}; ${solutionClone.files[0].content}`;
-
-    return solutionClone;
-}
-
 // TODO: add the formatted solution type
-async function* fullSubmitSolution (problemName: string, formattedSolution: codeProtoType): AsyncGenerator<jSC> {
+async function* fullSubmitSolution (problemName: string, formattedSolution: codeProtoType, lang: string): AsyncGenerator<jSC> {
     const problem: testCaseType[] = problems.get(problemName) || [];
 
     console.log(problem);
@@ -27,7 +20,7 @@ async function* fullSubmitSolution (problemName: string, formattedSolution: code
         // console.log(new Date()); <= for debugging
 
         // get piston response
-        const pistonRes = await postSolution(addNodeInputHeader(testCase.input, formattedSolution));
+        const pistonRes = await postSolution(addInputHeader(lang, testCase.input, formattedSolution));
 
         console.log(pistonRes.data);
 

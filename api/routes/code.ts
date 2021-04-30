@@ -15,7 +15,7 @@ router.post("/code", async (req, res) => {
 
     // submit to piston
     const formattedSolution = formatSolution(req.body);
-    const submitResponse = await fullSubmitSolution(req.body.prob, formattedSolution);
+    const submitResponse = await fullSubmitSolution(req.body.prob, formattedSolution, req.body.lang);
 
     console.log("submit response:", submitResponse);
 

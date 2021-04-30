@@ -16,7 +16,7 @@ export default async function* judgeCode(jsonString: string){
 
     // submit to piston
     const formattedSolution = formatSolution(req);
-    const pistonRes = fullSubmitSolution(req.prob, formattedSolution);
+    const pistonRes = fullSubmitSolution(req.prob, formattedSolution, req.lang);
 
     console.log("submit response:", pistonRes);
 
