@@ -1,12 +1,24 @@
-export const codeProto: any = {
-    "language": null,
-    "version": null,
+interface File {
+    content: string;
+}
+
+export interface codeProtoType {
+    language: string;
+    version: string;
+    files: [File];
+    stdin: string;
+    run_timeout: number;
+}
+
+export const codeProto: codeProtoType = {
+    "language": "",
+    "version": "",
     "files": [
         {
-            "content": null
+            "content": ""
         }
     ],
-    "stdin": null,
+    "stdin": "",
     "run_timeout": 1000
 };
 
