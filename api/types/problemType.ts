@@ -1,4 +1,4 @@
-export type testCase = {
+export interface testCase {
     input: number[];
     output: string;
 };
