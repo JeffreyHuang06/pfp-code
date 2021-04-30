@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { codeProtoType } from './codeProto';
 
-const postSolution = (solutionUpload: any) => {
+const postSolution = (solutionUpload: codeProtoType) => {
     return axios.post(
         "https://emkc.org/api/v2/piston/execute",
         JSON.stringify(solutionUpload),
@@ -20,4 +21,4 @@ const postSolution = (solutionUpload: any) => {
     });
 }
 
-export default postSolution
+export default postSolution;
