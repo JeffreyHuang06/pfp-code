@@ -21,8 +21,3 @@ export const codeProto: codeProtoType = {
     "stdin": "",
     "run_timeout": 1000
 };
-
-export const langVers: Map<string, string> = new Map([
-    ["js", "15.10.0"],
-    ["python", "3.9.4"]
-]);
