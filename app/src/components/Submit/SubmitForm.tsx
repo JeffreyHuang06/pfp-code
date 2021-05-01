@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState} from 'react'
 import {useSetRecoilState} from "recoil"
 import statusAtom from "state/statusAtom"
 
@@ -14,8 +14,24 @@ const SubmitForm: React.FC = () => {
     const [lang, setLang] = useState<string>("");
     const [solution, setSolution] = useState<string>("");
     const [prob, setProb] = useState<string>("");
-
     const setStatus = useSetRecoilState(statusAtom);
+
+    const [langL, setLangL] = useState("");
+    const [probL, setProbL] = useState("");
+
+    const validateFormInput = (): boolean => {
+        if (lang === "--" || lang === "") {
+            setLangL(" - Need proper language");
+            return false;
+        }
+
+        if (prob === "") {
+            setProbL(" - Problem must be filled in");
+            return false;
+        }
+
+        return true;
+    }
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLTextAreaElement> | React.ChangeEvent<HTMLInputElement>, type: string) => {
         switch(type){
@@ -36,13 +52,12 @@ const SubmitForm: React.FC = () => {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
+        if (!validateFormInput()) return;
+
         // reset the state
         setStatus([]);
 
-        // prepare the json sent
-
         const ws = new WebSocket('ws://localhost:8080/wscode');
-
         ws.onopen = function open() {
             ws.send(JSON.stringify({
                 "lang": lang,
@@ -69,7 +84,7 @@ const SubmitForm: React.FC = () => {
                 <div className="row">
                     <div className="col">
                         <div className="form-group">
-                            <label htmlFor="langInput">Language</label>
+                            <label htmlFor="langInput">Language {langL}</label>
                             <select className="form-control" id="langInput" onChange={e => {handleChange(e, "lang")}} value={lang}>
                             {
                                 langs.map(language => (
@@ -82,7 +97,7 @@ const SubmitForm: React.FC = () => {
 
                     <div className="col">
                         <div className="form-group">
-                            <label htmlFor="probInput">Problem Name</label>
+                            <label htmlFor="probInput">Problem Name {probL}</label>
                             <input className="form-control" id="probInput" onChange={e => {handleChange(e, "prob")}} value={prob} />
                         </div>
                     </div>

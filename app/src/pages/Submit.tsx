@@ -1,5 +1,5 @@
-import SubmitForm from "components/SubmitForm"
-import SolutionStatus from "components/SolutionStatus"
+import SubmitForm from "components/Submit/SubmitForm"
+import SolutionStatus from "components/Submit/SolutionStatus"
 
 const Submit = () => {
     return (
