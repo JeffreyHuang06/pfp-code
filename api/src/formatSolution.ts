@@ -1,5 +1,5 @@
-import { clientSubmission } from "types/clientSubmissionType.js";
-import {codeProto, codeProtoType} from "./codeProto.js"
+import { clientSubmission } from "types/clientSubmissionType";
+import {codeProto, codeProtoType} from "./codeProto"
 import langVers from "./langVers"
 
 // bodyJSON but be any type because possibly malformed user request
