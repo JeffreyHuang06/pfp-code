@@ -26,6 +26,7 @@
         "experimentalDecorators": true,
         "resolveJsonModule": true,
         "baseUrl": ".",
+        "skipLibCheck": true,
         "paths": {
             "routes/*": ["routes/*"],
             "src/*": ["src/*"],
