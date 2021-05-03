@@ -3,8 +3,8 @@ import 'module-alias/register';
 import express from 'express';
 import { Server } from "ws"
 
-import testAPIRouter from "routes/test"
-import codeAPIRouter from "routes/code"
+import problemListRouter from "routes/getProblems"
+
 import cors from "cors"
 import judgeCode from 'routes/codews';
 
@@ -19,8 +19,7 @@ const app = express();
 app.use(express.urlencoded({extended: true}));
 app.use(cors());
 
-app.use("/", testAPIRouter);
-app.use("/", codeAPIRouter);
+app.use("/", problemListRouter);
 
 app.listen(PORT, () => {
     console.log(`App listening at http://localhost:${PORT}`)
