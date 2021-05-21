@@ -142,7 +142,6 @@ Output how many pairs of cows can fit inside the frame
 The following possible pairs are
 
 ```text
-(1, 2)
 (1, 3)
 (1, 4)
 (2, 3)
